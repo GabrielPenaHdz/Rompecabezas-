@@ -49,9 +49,30 @@
     }
 
     function seleccionar(casilla){
-        //console.log(casilla); 
-        desmarcar();
-        document.getElementById(casilla).style.border = "solid 4px #C6FDAC";
+        num_click = num_click + 1;
+        console.log("Click en casilla: " + num_click);
+
+        if(num_click == 1){
+            casilla_click_1 = casilla;
+            desmarcar();
+            document.getElementById(casilla).style.border = "solid 4px #C6FDAC";
+            console.log("Casilla primer click" + casilla_click_1);
+        }
+        if (num_click ==2){
+            var casilla_click_2 = casilla;
+            console.log(piezas);
+            var aux = piezas[casilla_click_1];
+            piezas [casilla_click_1] = piezas [casilla_click_2];
+            piezas [casilla_click_2] = aux;
+            console.log(piezas);
+            num_click = 0;
+            refrescar();
+
+            //TAREAS FALTANTES POR AHORA
+            //comprobar el rompecabezas
+            //quitar los bordes 
+            desmarcar();
+        }
     }
 
     function refrescar(){
@@ -61,6 +82,8 @@
         }
     }
 
+    var num_click = 0;
+    var casilla_click_1;
     var piezas = [0, 1, 2, 3, 4, 5, 6, 7, 8]
     desordenar();
     refrescar();
